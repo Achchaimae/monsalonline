@@ -43,7 +43,7 @@
     //create client
     public function create(){
         //create query
-        $query = 'INSERT INTO ' . $this->table . ' SET name = :name, email = :email, phone = :phone, ref = :ref';
+        $query = 'INSERT INTO ' . $this->table . ' SET first_name = :fname, last_name = :lname ,phone = :phone, ref = :ref';
         //prepare statement
         $stmt = $this->conn->prepare($query);
         //clean data
@@ -52,8 +52,8 @@
         $this->phone = htmlspecialchars(strip_tags($this->phone));
         $this->ref = htmlspecialchars(strip_tags($this->ref));
         //bind data
-        $stmt->bindParam(':name', $this->first_name);
-        $stmt->bindParam(':email', $this->last_name);
+        $stmt->bindParam(':fname', $this->first_name);
+        $stmt->bindParam(':lname', $this->last_name);
         $stmt->bindParam(':phone', $this->phone);
         $stmt->bindParam(':ref', $this->ref);
         //execute query
@@ -66,7 +66,7 @@
     }
     public function update(){
         //create query
-        $query = 'UPDATE ' . $this->table . ' SET name = :name, email = :email, phone = :phone, ref = :ref WHERE id = :id';
+        $query = 'UPDATE ' . $this->table . ' SET first_name = :fname, last_name = :lname, phone = :phone, ref = :ref WHERE id = :id';
         //prepare statement
         $stmt = $this->conn->prepare($query);
         //clean data
@@ -76,8 +76,8 @@
         $this->ref = htmlspecialchars(strip_tags($this->ref));
         $this->id = htmlspecialchars(strip_tags($this->id));
         //bind data
-        $stmt->bindParam(':name', $this->first_name);
-        $stmt->bindParam(':email', $this->last_name);
+        $stmt->bindParam(':fname', $this->first_name);
+        $stmt->bindParam(':lname', $this->last_name);
         $stmt->bindParam(':phone', $this->phone);
         $stmt->bindParam(':ref', $this->ref);
         $stmt->bindParam(':id', $this->id);
