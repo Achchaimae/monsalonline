@@ -40,22 +40,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="flex -mx-3">
-                        <div class="w-full px-3 mb-12">
-                            <label for="" class="text-xs font-semibold px-1">Password</label>
-                            <div class="flex">
-                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
-                                <input type="password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="************">
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="flex -mx-3 mt-12">
                         <div class="w-full px-3 mb-5">
-                            <button class="block w-fit max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">LOG IN</button>
+                            <button class="block w-fit max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><a href="/calendar"> LOG IN</a></button>
                         </div>
                     </div>
                     <div class="mt-28">
-                        <p class="text-center text-gray-600"> Create New account? <a href="/" class="text-indigo-500 hover:text-indigo-700 font-semibold">register</a></p>
+                        <p class="text-center text-gray-600"> Create New account? <router-link  to="/" class="text-indigo-500 hover:text-indigo-700 font-semibold">REGISTER</router-link></p>
                     </div>
                 </div>
             </div>
@@ -69,6 +60,3 @@
         name: "Login",
     };
 </script>
-
-<style>
-</style>

@@ -10,7 +10,6 @@ include_once '../../models/client.php';
 
 //Instantiate DB & connect
 $database = new Database();
-
 $db = $database->connect();
 
 //Instantiate client object
