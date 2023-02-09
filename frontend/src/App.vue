@@ -8,7 +8,7 @@
 </script>
 
 <template>
-    <Register />
-   <!-- <RouterView /> -->
+    <!-- <Register /> -->
+   <RouterView />
 </template>
 
