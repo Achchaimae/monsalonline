@@ -21,11 +21,13 @@
     $client->ref = bin2hex(random_bytes(64));
     //create client
     if($client->login()){
+        //randomly generate a token
+        $client->ref = bin2hex(random_bytes(64));
         echo json_encode(
-            array('message' => 'client logged in')
+            array('message' => $client->ref)
         );
     }else{
         echo json_encode(
             array('message' => 'client not logged in')
-        );
+        );  
     }

@@ -22,8 +22,10 @@
     $client->ref = $data->ref;
     //create client
     if($client->create()){
+        //randomly generate a token
+        $client->ref = bin2hex(random_bytes(64));
         echo json_encode(
-            array('message' => 'client created')
+            array('message' => $client->ref)
         );
     }else{
         echo json_encode(

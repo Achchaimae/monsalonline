@@ -84,11 +84,9 @@
                     last_name: this.last_name,
                     phone: this.phone,
                     ref: this.ref
-                }).then(res => {
-                    this.$router.push('/login');
-                }).catch(err => {
-                    console.log(err);
                 })
+                this.$router.push('/login');
+                this.$swal('dwadawdda');
             }
         }
     }

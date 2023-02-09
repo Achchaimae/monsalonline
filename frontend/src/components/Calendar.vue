@@ -1,13 +1,13 @@
 <template>
-    <div class="container px-6 mx-auto m-6">
+    <div class="container px-6 mx-auto m-6 ">
       <div class="flex justify-between items-center mb-4">
         <button @click="prevMonth" class="bg-blue-300 px-4 py-2 rounded">Prev</button>
         <h2 class="text-2xl font-bold">{{ currentMonth }} {{ currentYear }}</h2>
         <button @click="nextMonth" class="bg-blue-300 px-4 py-2 rounded">Next</button>
       </div>
-      <table class="w-full text-left table-collapse h-96 rounded bg-gray-200">
+      <table class="w-full text-left table-collapse h-96 rounded bg-gray-200 drop-shadow">
         <thead>
-          <tr class="text-sm font-medium uppercase tracking-wide text-gray-700 text-center">
+          <tr class="text-sm font-medium uppercase tracking-wide bg text-gray-700 text-center">
             <th class="py-2">Sun</th>
             <th class="py-2">Mon</th>
             <th class="py-2">Tue</th>

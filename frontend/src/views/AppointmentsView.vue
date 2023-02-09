@@ -1,4 +1,4 @@
-<script setup>
+<script>
 import appointment from '../components/Appointment.vue'
 </script>
 
