@@ -19,7 +19,7 @@
         </thead>
         <tbody class="text-center rounded">
           <tr v-for="(week, index) in calendar" :key="index">
-            <td  onclick="document.location.href='/Appointment'" 
+            <td  onclick="document.location.href='/appointment'" 
               v-for="day in week" :key="day.date" class="border p-2"
               :class="{ 'bg-gray-300': !day.inMonth, 'bg-blue-500 text-white': day.selected }"
               @click="selectDate(day)">
