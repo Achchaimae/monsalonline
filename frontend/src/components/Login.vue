@@ -15,36 +15,22 @@
                     <p>Enter your information to log in</p>
                 </div>
                 <div>
-                    <div class="flex -mx-3">
-                        <!-- <div class="w-1/2 px-3 mb-5">
-                            <label for="" class="text-xs font-semibold px-1">First name</label>
-                            <div class="flex">
-                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
-                                <input type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="John">
-                            </div>
-                        </div> -->
-                        <!-- <div class="w-1/2 px-3 mb-5">
-                            <label for="" class="text-xs font-semibold px-1">Last name</label>
-                            <div class="flex">
-                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
-                                <input type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Smith">
-                            </div>
-                        </div> -->
-                    </div>
+                    <form  @submit.prevent="login">
                     <div class="flex -mx-3">
                         <div class="w-full px-3 mb-5">
                             <label for="" class="text-lg font-semibold px-1">Token</label>
                             <div class="flex">
                                 <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                <input type="email" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="dheuuzo668HH2">
+                                <input type="text" name="ref" v-model="ref" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="dheuuzo668HH2">
                             </div>
                         </div>
                     </div>
                     <div class="flex -mx-3 mt-12">
                         <div class="w-full px-3 mb-5">
-                            <button class="block w-fit max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><a href="/calendar"> LOG IN</a></button>
+                            <button class="block w-fit max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"> LOG IN</button>
                         </div>
                     </div>
+                </form>
                     <div class="mt-28">
                         <p class="text-center text-gray-600"> Create New account? <router-link  to="/" class="text-indigo-500 hover:text-indigo-700 font-semibold">REGISTER</router-link></p>
                     </div>
@@ -56,7 +42,30 @@
 
 </template>
 <script >
+   import axios from 'axios';
     export default {
-        name: "Login",
+        name: "login",
+        data() {
+            return {
+               ref: '',
+            }
+        },
+        methods : {
+            async login() {
+                const response = await axios.post('http://localhost/monsalonline/backend/api/client/login.php', {
+                    reference: this.ref
+                });
+                console.log(response.data.message);
+                if(response.data.message) {
+                    // console.log('success')
+                    this.$router.push('/calendar')
+                }
+                else {
+                    // console.log('error')
+                     alert('Invalid Token')
+                }
+            },
+        }
+            
     };
 </script>

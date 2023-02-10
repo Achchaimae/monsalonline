@@ -5,7 +5,7 @@
         <h2 class="text-2xl font-bold">{{ currentMonth }} {{ currentYear }}</h2>
         <button @click="nextMonth" class="bg-blue-300 px-4 py-2 rounded">Next</button>
       </div>
-      <table class="w-full text-left table-collapse h-96 rounded bg-gray-200 drop-shadow">
+      <table class="w-full text-left table-collapse h-96 rounded-lg bg-gray-200 drop-shadow">
         <thead>
           <tr class="text-sm font-medium uppercase tracking-wide bg text-gray-700 text-center">
             <th class="py-2">Sun</th>

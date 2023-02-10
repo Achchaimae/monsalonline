@@ -1,12 +1,12 @@
 <?php
     //headers
-    header('Access-Control-Allow-Origin: *');
-    header('Content-Type: application/json');
-    header('Access-Control-Allow-Methods: POST');
-    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
-
+    header("Access-Control-Allow-Origin: *");
+    header("content-type: Application/json");
+    header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
     include_once '../../config/Database.php';
     include_once '../../models/client.php';
+
 
     //Instantiate DB & connect
     $database = new Database();
@@ -19,18 +19,21 @@
     $client->first_name = $data->first_name;
     $client->last_name = $data->last_name;
     $client->phone = $data->phone;
-    $client->ref = $data->ref;
+    //randomly generate a token
+    $client->ref = 'X-' . substr(bin2hex(random_bytes(64)), 0, 6) . substr($client->phone, -4);
     //create client
-    if($client->create()){
-        //randomly generate a token
-        $client->ref = bin2hex(random_bytes(64));
-        echo json_encode(
-            array('message' => $client->ref)
-        );
-    }else{
-        echo json_encode(
-            array('message' => 'client not created')
-        );
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if($client->create()){
+            echo json_encode(
+                array('message' => $client->ref)
+            );
+        }else{
+            echo json_encode(
+                array('message' => 'Client Not Created')
+            );
+        }
     }
+
+    
 
     

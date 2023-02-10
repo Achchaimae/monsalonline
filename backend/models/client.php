@@ -26,11 +26,11 @@
     //get single client
     public function read_single(){
         //create query
-        $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1';
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE ref = :ref';
         //prepare statement
         $stmt = $this->conn->prepare($query);
         //bind id
-        $stmt->bindParam(1, $this->id);
+        $stmt->bindParam(1, $this->ref);
         //execute query
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -39,6 +39,7 @@
         $this->last_name = $row['email'];
         $this->phone = $row['phone'];
         $this->ref = $row['ref'];
+
     }
     //create client
     public function create(){
@@ -135,19 +136,21 @@
     //log client using random ref
     public function login(){
         //create query
-        $query = 'SELECT * FROM ' . $this->table . ' WHERE ref = ? LIMIT 0,1';
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE ref = :ref';
         //prepare statement
         $stmt = $this->conn->prepare($query);
-        //bind id
-        $stmt->bindParam(1, $this->ref);
+        //bind ref
+        $stmt->bindParam(':ref', $this->ref);
+        
         //execute query
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         //set properties
-        $this->first_name = $row['name'];
-        $this->last_name = $row['email'];
-        $this->phone = $row['phone'];
-        $this->ref = $row['ref'];
+        if ($row) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
 }

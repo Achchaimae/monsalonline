@@ -14,7 +14,7 @@
     $client = new Client($db);
 
     //get id
-    $client->id = isset($_GET['id']) ? $_GET['id'] : die();
+    $client->ref= isset($_GET['ref']) ? $_GET['ref'] : die();
     //get client
     $client->read_single();
     //create array

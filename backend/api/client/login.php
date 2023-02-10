@@ -16,15 +16,15 @@
     $client = new Client($db);
     //get raw client data
     $data = json_decode(file_get_contents("php://input"));
-    $client->ref = $data->ref;
+    $client->ref = $data->reference;
     //create client
     if($client->login()){
         echo json_encode(
-            array('message' => 'client logged in')
+            array('message' => true)
         );
     }else{
         echo json_encode(
-            array('message' => 'client not logged in')
+            array('message' => false)
         );
     }
     

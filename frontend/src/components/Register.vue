@@ -42,15 +42,6 @@
                         </div>
                         <div class="flex -mx-3">
                             <div class="w-full px-3 mb-5">
-                                <label for="" class="text-xs font-semibold px-1">password</label>
-                                <div class="flex">
-                                    <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                    <input type="password" v-model="password" name="password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="..........">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex -mx-3">
-                            <div class="w-full px-3 mb-5">
                                 <button class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
                             </div>
                         </div>
@@ -74,19 +65,18 @@
                 first_name: '',
                 last_name: '',
                 phone: '',
-                ref: ''
             }
         },
         methods: {
-            register() {
-                axios.post('http://localhost/monsalonline/backend/api/client/create.php', {
+            async register() {
+                const response = await axios.post('http://localhost/monsalonline/backend/api/client/create.php', {
                     first_name: this.first_name,
                     last_name: this.last_name,
                     phone: this.phone,
-                    ref: this.ref
                 })
+                console.log(response);
+                this.$swal('token', response.data.message , 'success');
                 this.$router.push('/login');
-                this.$swal('dwadawdda');
             }
         }
     }
