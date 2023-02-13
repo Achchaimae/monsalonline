@@ -4,6 +4,7 @@ import RegisterView from '../views/RegisterView.vue'
 import LoginView from '../views/LoginView.vue'
 import calendar from '../views/calendarView.vue'
 import appointment from '../views/AppointmentsView.vue'
+import Time from '../views/TimeView.vue'
 
 
 const router = createRouter({
@@ -31,7 +32,13 @@ const router = createRouter({
       name: 'appointment',
 
       component: appointment
+    },
+    {
+      path: '/time',
+      name: 'time',
+      component : Time
     }
+    
     
   ]
 })

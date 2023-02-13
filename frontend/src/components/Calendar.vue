@@ -1,5 +1,5 @@
 <template>
-    <div class="container px-6 mx-auto m-6 ">
+    <div class="container px-6 mx-auto m-6 mt-20">
       <div class="flex justify-between items-center mb-4">
         <button @click="prevMonth" class="bg-blue-300 px-4 py-2 rounded">Prev</button>
         <h2 class="text-2xl font-bold">{{ currentMonth }} {{ currentYear }}</h2>
@@ -19,9 +19,9 @@
         </thead>
         <tbody class="text-center rounded">
           <tr v-for="(week, index) in calendar" :key="index">
-            <td  onclick="document.location.href='/appointment'" 
+            <td  :onclick="day.day >= currrentDay ? 'document.location.href=\'/appointment\'' : ''" 
               v-for="day in week" :key="day.date" class="border p-2"
-              :class="{ 'bg-gray-300': !day.inMonth, 'bg-blue-500 text-white': day.selected }"
+              :class="falseDay(day) + ' ' + toDay(day.day) + ' ' + passedDay(day)"
               @click="selectDate(day)">
               {{ day.day }}
               
@@ -39,7 +39,8 @@ export default {
       currentMonth: '',
       currentYear: '',
       calendar: [],
-      selectedDate: null
+      selectedDate: null,
+      currrentDay: new Date().getDate()
     }
   },
   mounted() {
@@ -48,6 +49,9 @@ export default {
     this.generateCalendar()
   },
   methods: {
+    falseDay(day) {
+      return !day.inMonth ? 'bg-black/30': '';
+    },
     getMonthName(monthIndex) {
       let months = [
         'January',
@@ -64,6 +68,9 @@ export default {
         'December'
       ]
       return months[monthIndex]
+    },
+    toDay(date) {
+      return date === this.currrentDay && this.currentMonth === new Date(this.currentYear, new Date().getMonth()).toLocaleString('default', {month:'long'}) ? "bg-blue-600 text-white" : "bg-gray-300"
     },
     generateCalendar() {
       let calendar = []
@@ -110,6 +117,9 @@ export default {
         this.selectedDate = day.date
         this.generateCalendar()
       }
+    },
+    passedDay(day) {
+      return day.day < new Date().getDate() && this.currentMonth === new Date(this.currentYear, new Date().getMonth()).toLocaleString("default", {month:"long"}) ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'cursor-pointer bg-white';
     },
     prevMonth() {
       let now = new Date()
